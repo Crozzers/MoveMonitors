@@ -1,0 +1,3 @@
+screeninfo
+pywin32
+pypiwin32
