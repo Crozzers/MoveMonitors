@@ -3,6 +3,13 @@
 A little Windows only script to change the position of a secondary monitor relative to the position of the primary monitor.
 
 
+### Setup
+
+```
+git clone https://github.com/Crozzers/MoveMonitors.git
+pip install -r requirements.txt
+```
+
 ### Usage
 
 ```
