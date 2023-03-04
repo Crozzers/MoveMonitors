@@ -70,15 +70,17 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     sub = parser.add_subparsers(dest='command', required=True)
     sub.add_parser('list', help='List displays')
-    move_parser = sub.add_parser('move', help='Move a display')
+    move_parser = sub.add_parser('move', help='move a display')
     move_parser.add_argument(
-        'display', type=int, help='The index of the display to move')
+        'display', type=int, help='the index of the display to move')
     move_parser.add_argument('side', choices=get_args(
         Sides), help='Move to this side of the primary display')
-    move_parser.add_argument('align', nargs='?', default='center', choices=get_args(
-        Sides) + ('center',), help='[optional] align to this edge of the chosen side')
-    move_parser.add_argument('--rel-to', default=0, type=int,
-                             help='move the monitor relative to the position of this one')
+    move_parser.add_argument('-a', '--align', default='center', choices=get_args(
+        Sides) + ('center',), help='align to this edge of the chosen side')
+    move_parser.add_argument('--rel-to', default=None, type=int,
+                             help=('move the monitor relative to the position of this one.'
+                                   ' Defaults to primary or secondary monitor, whichever is NOT being moved'
+                                   ))
     args = parser.parse_args()
 
     # make sure primary monitor is monitor 0, then sort the rest by "\\DISPLAY1..." str
@@ -88,6 +90,9 @@ if __name__ == '__main__':
         for index, device in enumerate(devices):
             print(index, ':', device)
     else:
+        if args.rel_to is None:
+            args.rel_to = 1 if args.display == 0 else 0
+
         if args.display == 0:
             # dont move the primary, it causes issues. Move the other one relative to
             # the primary instead
