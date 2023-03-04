@@ -72,7 +72,7 @@ if __name__ == '__main__':
     sub.add_parser('list', help='List displays')
     move_parser = sub.add_parser('move', help='move a display')
     move_parser.add_argument(
-        'display', type=int, help='the index of the display to move')
+        'display', type=int, help='the display to move (1 being primary)')
     move_parser.add_argument('side', choices=get_args(
         Sides), help='Move to this side of the primary display')
     move_parser.add_argument('-a', '--align', default='center', choices=get_args(
@@ -88,8 +88,10 @@ if __name__ == '__main__':
 
     if args.command == 'list':
         for index, device in enumerate(devices):
-            print(index, ':', device)
+            print(index + 1, ':', device)
     else:
+        args.display -= 1
+
         if args.rel_to is None:
             args.rel_to = 1 if args.display == 0 else 0
 
