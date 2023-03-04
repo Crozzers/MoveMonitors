@@ -69,7 +69,7 @@ def calc_fuzzy_pos(base: Monitor, device: Monitor, pos: Sides, align: Sides = 'c
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     sub = parser.add_subparsers(dest='command', required=True)
-    sub.add_parser('list', help='List displays')
+    sub.add_parser('list', help='list available displays')
     move_parser = sub.add_parser('move', help='move a display')
     move_parser.add_argument(
         'display', type=int, help='the display to move (1 being primary)')

@@ -18,36 +18,33 @@ usage: move_monitor.py [-h] {list,move} ...
 
 positional arguments:
   {list,move}
-    list       List displays
-    move       Move a display
+    list       list available displays
+    move       move a display
 
 options:
   -h, --help   show this help message and exit
 
 > python move_monitor.py move --help
-usage: move_monitor.py move [-h] display {top,left,bottom,right} [{top,left,bottom,right,center}]
+usage: move_monitor.py move [-h] [-a {top,left,bottom,right,center}] [--rel-to REL_TO] display {top,left,bottom,right}
 
 positional arguments:
-  display               The index of the display to move
+  display               the display to move (1 being primary)
   {top,left,bottom,right}
                         Move to this side of the primary display
-  {top,left,bottom,right,center}
-                        [optional] align to this edge of the chosen side
 
 options:
   -h, --help            show this help message and exit
+  -a {top,left,bottom,right,center}, --align {top,left,bottom,right,center}
+                        align to this edge of the chosen side
+  --rel-to REL_TO       move the monitor relative to the position of this one. Defaults to primary or secondary monitor, whichever is NOT being moved
 ```
 
 ### Examples
 
-Note: monitors are listed as a 0 based list, so "move 1 left" does not mean the monitor labelled "1" by Windows.
-Use `python move_monitor.py list` to get the index of the monitor you want to move. In these examples, "move 1"
-corresponds to the secondary monitor.
-
-Command                                       | Result                  
-----------------------------------------------|---------------------------
-`python move_monitor.py move 1 left`          | ![](img/left-center.png)
-`python move_monitor.py move 1 left bottom`   | ![](img/left-bottom.png)
-`python move_monitor.py move 1 top right`     | ![](img/top-right.png)
-`python move_monitor.py move 1 right top`     | ![](img/right-top.png)
-`python move_monitor.py move 1 bottom center` | ![](img/bottom-center.png)
+Command                                              | Result
+-----------------------------------------------------|---------------------------
+`python move_monitor.py move 1 right`                | ![](img/left-center.png)
+`python move_monitor.py move 2 left --align bottom`  | ![](img/left-bottom.png)
+`python move_monitor.py move 1 bottom --align right` | ![](img/top-right.png)
+`python move_monitor.py move 2 right --align top`    | ![](img/right-top.png)
+`python move_monitor.py move 2 bottom`               | ![](img/bottom-center.png)
