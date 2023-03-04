@@ -40,6 +40,10 @@ options:
 
 ### Examples
 
+Note: monitors are listed as a 0 based list, so "move 1 left" does not mean the monitor labelled "1" by Windows.
+Use `python move_monitor.py list` to get the index of the monitor you want to move. In these examples, "move 1"
+corresponds to the secondary monitor.
+
 Command                                       | Result                  
 ----------------------------------------------|---------------------------
 `python move_monitor.py move 1 left`          | ![](img/left-center.png)
