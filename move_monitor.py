@@ -109,4 +109,4 @@ if __name__ == '__main__':
         mode = calc_fuzzy_pos(rel_to, choice, pos, align)
 
         print(win32api.ChangeDisplaySettingsEx(
-            choice.name, mode, 0))
+            choice.name, mode, win32con.CDS_UPDATEREGISTRY))
