@@ -1,5 +1,4 @@
 import argparse
-import ctypes
 from typing import Literal, get_args
 
 import pywintypes
@@ -7,9 +6,6 @@ import screeninfo
 import win32api
 import win32con
 from screeninfo import Monitor
-
-ctypes.windll.user32.SetProcessDPIAware()
-
 
 Sides = Literal['top', 'left', 'bottom', 'right']
 
