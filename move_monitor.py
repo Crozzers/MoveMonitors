@@ -87,6 +87,7 @@ if __name__ == '__main__':
             print(index + 1, ':', device)
     else:
         args.display -= 1
+        args.rel_to -= 1
 
         if args.rel_to is None:
             args.rel_to = 1 if args.display == 0 else 0
